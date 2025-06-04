@@ -91,6 +91,10 @@
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
+  if (typeof module !== 'undefined') {
+    module.exports.toggleScrollTop = toggleScrollTop;
+  }
+
   /**
    * Animation on scroll function and init
    */
@@ -126,9 +130,9 @@
   /**
    * Initiate glightbox
    */
-  const glightbox = GLightbox({
+  const glightbox = typeof GLightbox !== 'undefined' ? GLightbox({
     selector: '.glightbox'
-  });
+  }) : null;
 
   /**
    * Init isotope layout and filters
@@ -166,7 +170,9 @@
   /**
    * Initiate Pure Counter
    */
-  new PureCounter();
+  if (typeof PureCounter !== 'undefined') {
+    new PureCounter();
+  }
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
